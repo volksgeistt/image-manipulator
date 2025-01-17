@@ -96,6 +96,41 @@ function setupEventListeners() {
     document.getElementById('duotoneBtn').onclick = applyDuotoneEffect;
     document.getElementById('outrunBtn').onclick = applyOutrunEffect;
     document.getElementById('acidBtn').onclick = applyAcidEffect;
+    document.getElementById('oilpaintBtn').onclick = applyOilPaintEffect;
+    document.getElementById('comicBtn').onclick = applyComicEffect;
+    document.getElementById('nightvisionBtn').onclick = applyNightVisionEffect;
+    document.getElementById('bitwiseBtn').onclick = applyBitwiseEffect;
+    document.getElementById('vhsBtn').onclick = applyVHSEffect;
+
+    document.getElementById('seventyBtn').onclick = applySeventyEffect;
+    document.getElementById('posterizeBtn').onclick = applyPosterizeEffect;
+    document.getElementById('polaroidBtn').onclick = applyPolaroidEffect;
+    document.getElementById('technoBtn').onclick = applyTechnoEffect;
+    document.getElementById('infraredBtn').onclick = applyInfraredEffect;
+    document.getElementById('mirrorBtn').onclick = applyMirrorEffect;
+    document.getElementById('watercolorBtn').onclick = applyWatercolorEffect;
+    document.getElementById('blueprintBtn').onclick = applyBlueprintEffect;
+    document.getElementById('pixelsortBtn').onclick = applyPixelSortEffect;
+    document.getElementById('chromographBtn').onclick = applyChromographEffect;
+    document.getElementById('anaglyph3dBtn').onclick = applyAnaglyph3DEffect;
+    document.getElementById('mosaicBtn').onclick = applyMosaicEffect;
+    document.getElementById('printBtn').onclick = applyPrintEffect;
+
+    document.getElementById('heatmapBtn').onclick = applyHeatmapEffect;
+    document.getElementById('stainedglassBtn').onclick = applyStainedGlassEffect;
+    document.getElementById('etchingBtn').onclick = applyEtchingEffect;
+    document.getElementById('plasticBtn').onclick = applyPlasticEffect;
+    document.getElementById('aquariumBtn').onclick = applyAquariumEffect;
+    document.getElementById('parchmentBtn').onclick = applyParchmentEffect;
+    document.getElementById('frostedglassBtn').onclick = applyFrostedGlassEffect;
+    document.getElementById('cosmicBtn').onclick = applyCosmicEffect;
+    document.getElementById('paintbynumbersBtn').onclick = applyPaintByNumbersEffect;
+    document.getElementById('metallicBtn').onclick = applyMetallicEffect;
+    document.getElementById('gothicBtn').onclick = applyGothicEffect;
+    document.getElementById('lithographBtn').onclick = applyLithographEffect;
+    document.getElementById('stencilBtn').onclick = applyStencilEffect;
+    document.getElementById('chalkboardBtn').onclick = applyChalkboardEffect;
+    document.getElementById('impastoBtn').onclick = applyImpastoEffect;
 
 }
 
@@ -353,6 +388,799 @@ function createHologramPattern() {
     return patternCanvas;
 }
 
+function applySeventyEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Sepia(),
+        new fabric.Image.filters.BlendColor({
+            color: '#ffae42',
+            mode: 'overlay',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.Contrast({ contrast: 0.1 }),
+        new fabric.Image.filters.Saturation({ saturation: -0.2 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyPosterizeEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Contrast({ contrast: 0.8 }),
+        new fabric.Image.filters.Gamma({ gamma: [2, 2, 2] }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyPolaroidEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Brightness({ brightness: 0.1 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.05 }),
+        new fabric.Image.filters.Saturation({ saturation: -0.1 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#fff5e1',
+            mode: 'overlay',
+            alpha: 0.3
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyTechnoEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#00ff00',
+            mode: 'screen',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.Contrast({ contrast: 0.4 }),
+        new fabric.Image.filters.Noise({ noise: 10 }),
+        new fabric.Image.filters.Pixelate({ blocksize: 4 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyInfraredEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.BlendColor({
+            color: '#ff0000',
+            mode: 'screen',
+            alpha: 0.5
+        }),
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyMirrorEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#0099ff',
+            mode: 'screen',
+            alpha: 0.2
+        }),
+        new fabric.Image.filters.Brightness({ brightness: 0.05 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.1 })
+    );
+
+    const reflection = new fabric.Image(img.getElement(), {
+        filters: img.filters,
+        flipY: true,
+        opacity: 0.4
+    });
+
+    canvas.add(reflection);
+    reflection.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyWatercolorEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Blur({ blur: 0.1 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.1 }),
+        new fabric.Image.filters.Saturation({ saturation: 0.3 }),
+        new fabric.Image.filters.Convolute({
+            matrix: [0.1, 0.1, 0.1,
+                    0.1, 0.2, 0.1,
+                    0.1, 0.1, 0.1]
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyBlueprintEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.BlendColor({
+            color: '#0066cc',
+            mode: 'multiply',
+            alpha: 0.8
+        }),
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyPixelSortEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Pixelate({ blocksize: 4 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.4 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#ff00ff',
+            mode: 'overlay',
+            alpha: 0.2
+        })
+    );
+
+    img.filters.push(
+        new fabric.Image.filters.Displacement({
+            scale: 20,
+            offset: new fabric.Point(10, 0)
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyHeatmapEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.BlendColor({
+            color: '#ff0000',
+            mode: 'overlay',
+            alpha: 0.5
+        }),
+        new fabric.Image.filters.Gradient({
+            type: 'linear',
+            colorStops: [
+                { offset: 0, color: '#000080' },
+                { offset: 0.5, color: '#ff0000' },
+                { offset: 1, color: '#ffff00' }
+            ]
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyStainedGlassEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.Saturation({ saturation: 0.5 }),
+        new fabric.Image.filters.Convolute({
+            matrix: [1, 1, 1,
+                    1, 0.7, -1,
+                    -1, -1, -1]
+        }),
+        new fabric.Image.filters.BlendColor({
+            color: '#4a90e2',
+            mode: 'overlay',
+            alpha: 0.2
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyEtchingEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.Contrast({ contrast: 0.5 }),
+        new fabric.Image.filters.Convolute({
+            matrix: [-1, -1, -1,
+                    -1,  8, -1,
+                    -1, -1, -1]
+        }),
+        new fabric.Image.filters.Brightness({ brightness: -0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyPlasticEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.Saturation({ saturation: 0.4 }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#ffffff',
+            mode: 'overlay',
+            alpha: 0.3
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyAquariumEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#00ffff',
+            mode: 'screen',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.Blur({ blur: 0.2 }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 })
+    );
+
+    const ripple = new fabric.Rect({
+        width: canvas.width,
+        height: canvas.height,
+        fill: new fabric.Pattern({
+            source: createRipplePattern(),
+            repeat: 'repeat'
+        }),
+        opacity: 0.2
+    });
+
+    canvas.add(ripple);
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function createRipplePattern() {
+    const patternCanvas = document.createElement('canvas');
+    const ctx = patternCanvas.getContext('2d');
+    patternCanvas.width = 10;
+    patternCanvas.height = 10;
+    
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.beginPath();
+    ctx.arc(5, 5, 3, 0, Math.PI * 2);
+    ctx.stroke();
+    
+    return patternCanvas;
+}
+
+function applyParchmentEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Sepia(),
+        new fabric.Image.filters.Contrast({ contrast: -0.1 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#f4d03f',
+            mode: 'multiply',
+            alpha: 0.2
+        }),
+        new fabric.Image.filters.Noise({ noise: 10 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyFrostedGlassEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Blur({ blur: 0.3 }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#ffffff',
+            mode: 'screen',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.Noise({ noise: 15 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyCosmicEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#663399',
+            mode: 'overlay',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.Brightness({ brightness: -0.1 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.2 }),
+        new fabric.Image.filters.Noise({ noise: 20 })
+    );
+
+    const stars = new fabric.Rect({
+        width: canvas.width,
+        height: canvas.height,
+        fill: new fabric.Pattern({
+            source: createStarPattern(),
+            repeat: 'repeat'
+        }),
+        opacity: 0.4
+    });
+
+    canvas.add(stars);
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function createStarPattern() {
+    const patternCanvas = document.createElement('canvas');
+    const ctx = patternCanvas.getContext('2d');
+    patternCanvas.width = 100;
+    patternCanvas.height = 100;
+    
+    for (let i = 0; i < 10; i++) {
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        ctx.fillStyle = 'white';
+        ctx.fillRect(x, y, 1, 1);
+    }
+    
+    return patternCanvas;
+}
+
+function applyPaintByNumbersEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Posterize({ levels: 5 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.Convolute({
+            matrix: [-1, -1, -1,
+                    -1,  8, -1,
+                    -1, -1, -1]
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyMetallicEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.Contrast({ contrast: 0.4 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#808080',
+            mode: 'overlay',
+            alpha: 0.5
+        }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyGothicEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.Brightness({ brightness: -0.2 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#000000',
+            mode: 'multiply',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.Saturation({ saturation: -0.2 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyLithographEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.Contrast({ contrast: 0.5 }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 }),
+        new fabric.Image.filters.Noise({ noise: 10 })
+    );
+
+    const texture = new fabric.Rect({
+        width: canvas.width,
+        height: canvas.height,
+        fill: new fabric.Pattern({
+            source: createLithographPattern(),
+            repeat: 'repeat'
+        }),
+        opacity: 0.15
+    });
+
+    canvas.add(texture);
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function createLithographPattern() {
+    const patternCanvas = document.createElement('canvas');
+    const ctx = patternCanvas.getContext('2d');
+    patternCanvas.width = 5;
+    patternCanvas.height = 5;
+    
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, 2, 2);
+    
+    return patternCanvas;
+}
+
+function applyStencilEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Contrast({ contrast: 0.8 }),
+        new fabric.Image.filters.Brightness({ brightness: -0.1 }),
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.Threshold({ threshold: 127 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyChalkboardEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Invert(),
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#003300',
+            mode: 'multiply',
+            alpha: 0.9
+        }),
+        new fabric.Image.filters.Noise({ noise: 15 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyImpastoEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Contrast({ contrast: 0.4 }),
+        new fabric.Image.filters.Convolute({
+            matrix: [1, 1, 1,
+                    1, 0.7, -1,
+                    -1, -1, -1]
+        }),
+        new fabric.Image.filters.Noise({ noise: 20 })
+    );
+
+    const texture = new fabric.Rect({
+        width: canvas.width,
+        height: canvas.height,
+        fill: new fabric.Pattern({
+            source: createImpastoPattern(),
+            repeat: 'repeat'
+        }),
+        opacity: 0.3
+    });
+
+    canvas.add(texture);
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function createImpastoPattern() {
+    const patternCanvas = document.createElement('canvas');
+    const ctx = patternCanvas.getContext('2d');
+    patternCanvas.width = 10;
+    patternCanvas.height = 10;
+    
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+    for (let i = 0; i < 5; i++) {
+        ctx.fillRect(
+            Math.random() * 10,
+            Math.random() * 10,
+            Math.random() * 3,
+            Math.random() * 3
+        );
+    }
+    
+    return patternCanvas;
+}
+
+function applyChromographEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Saturation({ saturation: 0.5 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#ff0000',
+            mode: 'screen',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.BlendColor({
+            color: '#00ff00',
+            mode: 'multiply',
+            alpha: 0.2
+        }),
+        new fabric.Image.filters.Contrast({ contrast: 0.2 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyAnaglyph3DEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    const redChannel = new fabric.Image(img.getElement(), {
+        filters: [
+            new fabric.Image.filters.BlendColor({
+                color: '#ff0000',
+                mode: 'multiply',
+                alpha: 0.9
+            })
+        ]
+    });
+
+    const cyanChannel = new fabric.Image(img.getElement(), {
+        filters: [
+            new fabric.Image.filters.BlendColor({
+                color: '#00ffff',
+                mode: 'multiply',
+                alpha: 0.9
+            })
+        ],
+        left: img.left + 5
+    });
+
+    canvas.remove(img);
+    canvas.add(redChannel, cyanChannel);
+    redChannel.applyFilters();
+    cyanChannel.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyMosaicEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Pixelate({ blocksize: 12 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.2 }),
+        new fabric.Image.filters.Saturation({ saturation: 0.3 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#ffcc00',
+            mode: 'overlay',
+            alpha: 0.1
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyPrintEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.Contrast({ contrast: 0.4 }),
+        new fabric.Image.filters.Noise({ noise: 20 }),
+        new fabric.Image.filters.Pixelate({ blocksize: 2 })
+    );
+
+    const pattern = new fabric.Rect({
+        width: canvas.width,
+        height: canvas.height,
+        fill: new fabric.Pattern({
+            source: createDotPattern(),
+            repeat: 'repeat'
+        }),
+        opacity: 0.3
+    });
+
+    canvas.add(pattern);
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function createDotPattern() {
+    const patternCanvas = document.createElement('canvas');
+    const ctx = patternCanvas.getContext('2d');
+    patternCanvas.width = 4;
+    patternCanvas.height = 4;
+    
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.beginPath();
+    ctx.arc(2, 2, 1, 0, Math.PI * 2);
+    ctx.fill();
+    
+    return patternCanvas;
+}
+
 function applyRetroEffect() {
     const img = canvas.getActiveObject() || canvas.getObjects()[0];
     if (!img) return;
@@ -413,6 +1241,146 @@ function applyDuotoneEffect() {
     canvas.renderAll();
     hideLoading();
 }
+
+function applyOilPaintEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Convolute({
+            matrix: [1/9, 1/9, 1/9,
+                    1/9, 1/9, 1/9,
+                    1/9, 1/9, 1/9]
+        }),
+        new fabric.Image.filters.Contrast({ contrast: 0.2 }),
+        new fabric.Image.filters.Saturation({ saturation: 0.3 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyComicEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Contrast({ contrast: 0.5 }),
+        new fabric.Image.filters.Saturation({ saturation: 0.5 }),
+        new fabric.Image.filters.Convolute({
+            matrix: [-1, -1, -1,
+                    -1,  9, -1,
+                    -1, -1, -1]
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyNightVisionEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.BlendColor({
+            color: '#00ff00',
+            mode: 'multiply',
+            alpha: 0.5
+        }),
+        new fabric.Image.filters.Noise({ noise: 20 }),
+        new fabric.Image.filters.Brightness({ brightness: -0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyBitwiseEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Contrast({ contrast: 0.8 }),
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#00ff00',
+            mode: 'screen',
+            alpha: 0.3
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyVHSEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Noise({ noise: 15 }),
+        new fabric.Image.filters.Blur({ blur: 0.2 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#ff0000',
+            mode: 'multiply',
+            alpha: 0.1
+        })
+    );
+
+    const scanlines = new fabric.Rect({
+        width: canvas.width,
+        height: canvas.height,
+        fill: new fabric.Pattern({
+            source: createVHSPattern(),
+            repeat: 'repeat-y'
+        }),
+        opacity: 0.2
+    });
+
+    canvas.add(scanlines);
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function createVHSPattern() {
+    const patternCanvas = document.createElement('canvas');
+    const ctx = patternCanvas.getContext('2d');
+    patternCanvas.width = 8;
+    patternCanvas.height = 8;
+    
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(0, 0, 8, 1);
+    ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+    ctx.fillRect(0, 2, 8, 1);
+    ctx.fillStyle = 'rgba(0, 255, 255, 0.2)';
+    ctx.fillRect(0, 4, 8, 1);
+    
+    return patternCanvas;
+}
+
 
 function applyOutrunEffect() {
     const img = canvas.getActiveObject() || canvas.getObjects()[0];
