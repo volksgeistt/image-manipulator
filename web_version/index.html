@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="editor-wrapper">
+            <div class="controls">
+                <div class="button-group">
+                    <button class="upload-btn" id="uploadBtn">Upload Image</button>
+                    <button class="save-btn" id="saveBtn">Export Image</button>
+                </div>
+                
+                <div class="button-group">
+                    <h3>History</h3>
+                    <div class="tools-grid">
+                        <button id="undoBtn">Undo</button>
+                        <button id="redoBtn">Redo</button>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <h3>Adjustments</h3>
+                    <div class="slider-container">
+                        <label>Brightness</label>
+                        <input type="range" class="slider" id="brightnessSlider" min="-100" max="100" value="0">
+                    </div>
+                    <div class="slider-container">
+                        <label>Contrast</label>
+                        <input type="range" class="slider" id="contrastSlider" min="-100" max="100" value="0">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <h3>Effects</h3>
+                    <div class="tools-grid">
+                        <button id="blurBtn">Blur</button>
+                        <button id="sharpenBtn">Sharpen</button>
+                        <button id="invertBtn">Invert</button>
+                        <button id="bwBtn">Monochrome</button>
+                        <button id="glitchBtn">Glitch</button>
+                        <button id="neonBtn">Neon</button>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <h3>Transform</h3>
+                    <div class="tools-grid">
+                        <button id="rotateLeftBtn">Rotate Left</button>
+                        <button id="rotateRightBtn">Rotate Right</button>
+                        <button id="flipHBtn">Flip H</button>
+                        <button id="flipVBtn">Flip V</button>
+                        <button id="cropBtn">Crop</button>
+                        <button id="circleCropBtn">Circle Crop</button>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <h3>Artistic</h3>
+                    <div class="tools-grid">
+                        <button id="pixelateBtn">Pixelate</button>
+                        <button id="synthwaveBtn">Synthwave</button>
+                        <button id="scanlineBtn">Scanlines</button>
+                        <button id="matrixBtn">Matrix</button>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+    </div>
+    <div id="loading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div>Processing Image...</div>
+        </div>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" style="display: none">
+    <script src="script.js"></script>
+</body>
+</html>
