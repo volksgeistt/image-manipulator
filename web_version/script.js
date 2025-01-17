@@ -86,6 +86,17 @@ function setupEventListeners() {
 
     document.getElementById('brightnessSlider').oninput = updateBrightness;
     document.getElementById('contrastSlider').oninput = updateContrast;
+    document.getElementById('rainbowBtn').onclick = applyRainbowEffect;
+    document.getElementById('vintageBtn').onclick = applyVintageEffect;
+    document.getElementById('cyberpunkBtn').onclick = applyCyberpunkEffect;
+    document.getElementById('vaporwaveBtn').onclick = applyVaporwaveEffect;
+    document.getElementById('hologramBtn').onclick = applyHologramEffect;
+    document.getElementById('retroBtn').onclick = applyRetroEffect;
+    document.getElementById('noiseBtn').onclick = applyNoiseEffect;
+    document.getElementById('duotoneBtn').onclick = applyDuotoneEffect;
+    document.getElementById('outrunBtn').onclick = applyOutrunEffect;
+    document.getElementById('acidBtn').onclick = applyAcidEffect;
+
 }
 
 function handleImageUpload(e) {
@@ -189,6 +200,268 @@ function applyGlitchEffect() {
 
     img.applyFilters();
     canvas.renderAll();
+}
+
+function applyRainbowEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#ff0000',
+            mode: 'multiply',
+            alpha: 0.2
+        }),
+        new fabric.Image.filters.Gradient({
+            type: 'linear',
+            colorStops: [
+                { offset: 0, color: '#ff0000' },
+                { offset: 0.2, color: '#ffa500' },
+                { offset: 0.4, color: '#ffff00' },
+                { offset: 0.6, color: '#00ff00' },
+                { offset: 0.8, color: '#0000ff' },
+                { offset: 1, color: '#ff00ff' }
+            ]
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyVintageEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Sepia(),
+        new fabric.Image.filters.Noise({ noise: 25 }),
+        new fabric.Image.filters.Brightness({ brightness: -0.1 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyCyberpunkEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#00ffff',
+            mode: 'overlay',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.BlendColor({
+            color: '#ff00ff',
+            mode: 'screen',
+            alpha: 0.2
+        }),
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.Brightness({ brightness: 0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyVaporwaveEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#ff71ce',
+            mode: 'multiply',
+            alpha: 0.2
+        }),
+        new fabric.Image.filters.BlendColor({
+            color: '#01cdfe',
+            mode: 'screen',
+            alpha: 0.2
+        }),
+        new fabric.Image.filters.Saturation({ saturation: 0.5 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.15 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyHologramEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#00ffff',
+            mode: 'screen',
+            alpha: 0.4
+        }),
+        new fabric.Image.filters.Noise({ noise: 30 }),
+        new fabric.Image.filters.Blur({ blur: 0.2 })
+    );
+
+    const scanlines = new fabric.Rect({
+        width: canvas.width,
+        height: canvas.height,
+        fill: new fabric.Pattern({
+            source: createHologramPattern(),
+            repeat: 'repeat-y'
+        }),
+        opacity: 0.2
+    });
+
+    canvas.add(scanlines);
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function createHologramPattern() {
+    const patternCanvas = document.createElement('canvas');
+    const ctx = patternCanvas.getContext('2d');
+    patternCanvas.width = 2;
+    patternCanvas.height = 4;
+    
+    ctx.fillStyle = 'rgba(0, 255, 255, 0.5)';
+    ctx.fillRect(0, 0, 2, 1);
+    ctx.fillStyle = 'transparent';
+    ctx.fillRect(0, 1, 2, 3);
+    
+    return patternCanvas;
+}
+
+function applyRetroEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Pixelate({ blocksize: 6 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.3 }),
+        new fabric.Image.filters.Saturation({ saturation: 0.3 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyNoiseEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Noise({ noise: 50 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.1 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyDuotoneEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Grayscale(),
+        new fabric.Image.filters.BlendColor({
+            color: '#ff0099',
+            mode: 'overlay',
+            alpha: 0.7
+        }),
+        new fabric.Image.filters.BlendColor({
+            color: '#00ff99',
+            mode: 'multiply',
+            alpha: 0.3
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyOutrunEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.BlendColor({
+            color: '#ff2a6d',
+            mode: 'overlay',
+            alpha: 0.3
+        }),
+        new fabric.Image.filters.BlendColor({
+            color: '#05d9e8',
+            mode: 'screen',
+            alpha: 0.2
+        }),
+        new fabric.Image.filters.Contrast({ contrast: 0.2 }),
+        new fabric.Image.filters.Saturation({ saturation: 0.3 })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
+}
+
+function applyAcidEffect() {
+    const img = canvas.getActiveObject() || canvas.getObjects()[0];
+    if (!img) return;
+
+    showLoading();
+    saveState();
+
+    img.filters.push(
+        new fabric.Image.filters.Saturation({ saturation: 1 }),
+        new fabric.Image.filters.Contrast({ contrast: 0.4 }),
+        new fabric.Image.filters.Hue({ rotation: 180 }),
+        new fabric.Image.filters.BlendColor({
+            color: '#ff00ff',
+            mode: 'overlay',
+            alpha: 0.3
+        })
+    );
+
+    img.applyFilters();
+    canvas.renderAll();
+    hideLoading();
 }
 
 function applyNeonEffect() {
